@@ -12,16 +12,16 @@ jobs:
         timeout-minutes: 10
         runs-on: ubuntu-latest
         steps:
-            - uses: checkout@v4
-            - uses: setup-node@v4
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
             - run: npm ci 
             - run: npm test
     test-e2e:
         timeout-minutes: 10
         runs-on: ubuntu-latest
         steps:
-            - uses: checkout@v4
-            - uses: setup-node@v4
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
             - run: npm ci 
             - run: npm start &
             - run: npm run cy:test
