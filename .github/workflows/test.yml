@@ -1,0 +1,35 @@
+name: Test App 
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main 
+
+jobs:
+    test-unit:
+        timeout-minutes: 10
+        runs-on: ubuntu-latest
+        steps:
+            - uses: checkout@v4
+            - uses: setup-node@v4
+            - run: npm ci 
+            - run: npm run test-unit
+    test-integration:
+        timeout-minutes: 10
+        runs-on: ubuntu-latest
+        steps:
+            - uses: checkout@v4
+            - uses: setup-node@v4
+            - run: npm ci 
+            - run: npm run test-int
+    test-e2e:
+        timeout-minutes: 10
+        runs-on: ubuntu-latest
+        steps:
+            - uses: checkout@v4
+            - uses: setup-node@v4
+            - run: npm ci 
+            - run: npm start &
+            - run: npm run cy:test
