@@ -13,7 +13,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: test-and-build
+    #needs: test-and-build
     permissions:
       contents: read
       pages: write
