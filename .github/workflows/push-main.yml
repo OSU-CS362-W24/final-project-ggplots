@@ -5,11 +5,11 @@ on:
 
 jobs:
   test-and-build:
-    timeout-minutes: 10
     uses: ./.github/workflows/test-and-build.yml
     with:
       save-build: true
   build:
+    timeout-minutes: 20
     needs: test-and-build
     runs-on: ubuntu-latest 
     permissions: 
