@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+  push: {}
   workflow_call:
     inputs: 
       save-build:
@@ -36,7 +37,3 @@ jobs:
       - uses: actions/setup-node@v4
       - run: npm ci 
       - run: npm run build
-      - if: ${{inputs.save-build}}
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build/
