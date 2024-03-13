@@ -21,9 +21,6 @@ describe('Open Saved Chart', () => {
 
         // verify chart title is the same as the one we saved
         cy.findByLabelText('Chart title').should('have.value', 'test chart')
-        
-
-
     
     });
 });
