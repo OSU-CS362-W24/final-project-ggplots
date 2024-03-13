@@ -4,9 +4,11 @@ on:
     pull_request:
         branches:
             - main
-    push:
-        branches:
-            - main 
+    workflow_call:
+        inputs: 
+            save-build:
+                type: boolean
+                required: false
 
 jobs:
     test-jest:
@@ -26,3 +28,15 @@ jobs:
             - run: npm ci 
             - run: npm start &
             - run: npm run cy:test
+    test-build:
+        timeout-minutes: 10
+        runs-on: ubuntu-latest 
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+            - run: npm ci 
+            - run: npm run build 
+            - if: ${{inputs.save-build}}
+            uses: actions/upload-pages-artifact@v3
+            with:
+                path: build/
