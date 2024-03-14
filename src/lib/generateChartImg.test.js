@@ -14,5 +14,18 @@ describe('generateChartImg Function line chart test', () => {
     });
 });
 
+describe('generateChartImg Function bar chart test', () => {
+    test('successfully generates a bar chart with default color', async () => {
+        const type = 'bar';
+        const data = [{x: 'A', y: 20}, {x: 'B', y: 30}, {x: 'C', y: 40}];
+        const xLabel = 'Category';
+        const yLabel = 'Value';
+        const title = 'Test Bar Chart';
+
+        const result = await generateChartImg(type, data, xLabel, yLabel, title);
+        expect(result).toMatch(/^blob:/); // Check if the result is a blob URL (the correct format for an image)
+    });
+
+});
 
 
