@@ -28,4 +28,16 @@ describe('generateChartImg Function bar chart test', () => {
 
 });
 
+describe('generateChartImg Function error thrown test', () => {
+    test('handles API error gracefully', async () => {
+        const type = 'undefined'; // Invalid chart type should cause an error
+        const data = [{x: 10, y: 20}, {x: 20, y: 30}];
+        const xLabel = 'Error Case X';
+        const yLabel = 'Error Case Y';
+        const title = 'Error Case Chart';
 
+        await expect(generateChartImg(type, data, xLabel, yLabel, title)).rejects.toThrow();
+    });
+
+    
+});
