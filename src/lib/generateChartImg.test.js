@@ -28,6 +28,20 @@ describe('generateChartImg Function bar chart test', () => {
 
 });
 
+describe('generateChartImg Function scatter chart test', () => {
+    test('successfully generates a scatter chart with default color', async () => {
+        const type = 'scatter';
+        const data = [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 5}];
+        const xLabel = 'X Axis';
+        const yLabel = 'Y Axis';
+        const title = 'Test Scatter Chart';
+
+        const result = await generateChartImg(type, data, xLabel, yLabel, title);
+        expect(result).toMatch(/^blob:/); // Check if the result is a blob URL (the correct format for an image)
+    });
+
+});
+
 describe('generateChartImg Function error thrown test', () => {
     test('handles API error gracefully', async () => {
         const type = 'undefined'; // Invalid chart type should cause an error
@@ -39,5 +53,5 @@ describe('generateChartImg Function error thrown test', () => {
         await expect(generateChartImg(type, data, xLabel, yLabel, title)).rejects.toThrow();
     });
 
-    
 });
+
