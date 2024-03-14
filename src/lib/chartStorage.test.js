@@ -70,9 +70,14 @@ describe('updateCurrentChartData', () => {
     it('should update the current chart data', () => {
     // Define a chart to save
       const currentChartData = { id: 1, data: 'Current Chart Data' };
-    // Update the current chart data
-      updateCurrentChartData(currentChartData);
-      expect(loadCurrentChartData()).toEqual(currentChartData);
+        saveChart(currentChartData);
+
+    // change the current chart data
+    const newCurrentChartData = { id: 1, data: 'New Current Chart Data' };
+    updateCurrentChartData(newCurrentChartData);
+
+    // Load the saved chart and compare it to the original
+    expect(loadCurrentChartData()).toEqual(newCurrentChartData);
     });
 });
 
