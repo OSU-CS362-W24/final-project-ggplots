@@ -32,7 +32,37 @@ describe('saveChart', () => {
         expect(loadAllSavedCharts()).toEqual([newChart]);
       });
 });
+
+describe('loadSavedChart', () => {
+    it('should load a specific saved chart', () => {
+      const chart = { id: 1, data: 'Sample Chart Data' };
+      saveChart(chart);
+      expect(loadSavedChart(0)).toEqual(chart);
+    });
   
+    it('should return an empty object if the chart does not exist', () => {
+      expect(loadSavedChart(0)).toEqual({});
+    });
+});
+
+describe('loadAllSavedCharts', () => {
+    it('should load all saved charts', () => {
+      const chart1 = { id: 1, data: 'Chart 1 Data' };
+      const chart2 = { id: 2, data: 'Chart 2 Data' };
+      saveChart(chart1);
+      saveChart(chart2);
+      expect(loadAllSavedCharts()).toEqual([chart1, chart2]);
+    });
+});
+
+
+describe('updateCurrentChartData', () => {
+    it('should update the current chart data', () => {
+      const currentChartData = { id: 1, data: 'Current Chart Data' };
+      updateCurrentChartData(currentChartData);
+      expect(loadCurrentChartData()).toEqual(currentChartData);
+    });
+});
 
   
 });
